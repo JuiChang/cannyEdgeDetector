@@ -20,7 +20,6 @@ if __name__ == '__main__':
     cv2.imwrite(os.path.join(outputFolder, fileName), img)
 
     ################ preprocessing
-    # img = gaussianFilter(img, 9)
     img = normalizeFullDomain(img, False)
     img = gammaCorrection(img, 0.5, True)
     img = adaptiveLocalNoiseReductionFilter(img, 11, 50, fileNameSplit)
@@ -41,15 +40,6 @@ if __name__ == '__main__':
     thres = otsu(nmsMag)
     print("otsu thres:", thres)
 
-    # for dividend in range(1, 10):
-    #     strong = doubleThresholds(nmsMag, thres / dividend, None, True)
-    #     strongImg = strong * 255
-    #     cv2.imwrite(os.path.join(outputFolder, "sobel_strong_{}.bmp".format(dividend)), strongImg)
-
-    # for i in [0.1, 0.3, 0.5, 0.7, 0.9]:
-    # for i in [0.5]:
-    # for i in range(1, 20, 2):
-    #     for j in [9, 11]:
     iter = 1
     seSize = 7
     # douThres = doubleThresholds(nmsMag, thres * 1.3, thres * i, False, iter, seSize)
